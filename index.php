@@ -30,7 +30,7 @@
             </p>
         </div>
         <div class="sign-in text-center">
-            <p><a class="btn-info" href="registration.php"  id="Sign-btn">Sign-up</a> or <a class="btn-info" href="registration.php" onclick="left()" id="Sign-btn">Login</a></p>
+            <p><a class="btn-info" href="registration.php"  id="Sign-btn">Sign-up</a></p>
         </div>
     </div>
 </div>

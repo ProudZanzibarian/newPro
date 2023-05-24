@@ -1,7 +1,7 @@
 <?php session_start(); ?>
-<?php include("header.php"); ?>
-<?php include("sidebar2.php"); ?>
-<?php include("backColor.php"); ?>
+<?php include_once("header.php"); ?>
+<?php include_once("sidebar2.php"); ?>
+<?php include_once("backColor.php"); ?>
 <div class="container" id="panels">
     <div class="card" id="info-Card">
         <div class="card-body">

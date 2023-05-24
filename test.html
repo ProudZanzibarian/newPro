@@ -1,87 +1,26 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
 
-  <style>
-    .btn-7 {
-      background: linear-gradient(0deg, rgba(255,151,0,1) 0%, rgba(251,75,2,1) 100%);
-        line-height: 42px;
-        padding: 0;
-        border: none;
-      }
-      .btn-7 span {
-        position: relative;
-        display: block;
-        width: 120%;
-        height: 100%;
-      }
-      .btn-7:before,
-      .btn-7:after {
-        position: absolute;
-        content: "";
-        right: 0;
-        bottom: 0;
-        background: rgba(251,75,2,1);
-        box-shadow:
-         -7px -7px 20px 0px rgba(255,255,255,.9),
-         -4px -4px 5px 0px rgba(255,255,255,.9),
-         7px 7px 20px 0px rgba(0,0,0,.2),
-         4px 4px 5px 0px rgba(0,0,0,.3);
-        transition: all 0.3s ease;
-      }
-      .btn-7:before{
-         height: 0%;
-         width: 2px;
-      }
-      .btn-7:after {
-        width: 0%;
-        height: 2px;
-      }
-      .btn-7:hover{
-        color: rgba(251,75,2,1);
-        background: transparent;
-      }
-      .btn-7:hover:before {
-        height: 100%;
-      }
-      .btn-7:hover:after {
-        width: 100%;
-      }
-      .btn-7 span:before,
-      .btn-7 span:after {
-        position: absolute;
-        content: "";
-        left: 0;
-        top: 0;
-        background: rgba(251,75,2,1);
-        box-shadow:
-         -7px -7px 20px 0px rgba(255,255,255,.9),
-         -4px -4px 5px 0px rgba(255,255,255,.9),
-         7px 7px 20px 0px rgba(0,0,0,.2),
-         4px 4px 5px 0px rgba(0,0,0,.3);
-        transition: all 0.3s ease;
-      }
-      .btn-7 span:before {
-        width: 2px;
-        height: 0%;
-      }
-      .btn-7 span:after {
-        height: 2px;
-        width: 0%;
-      }
-      .btn-7 span:hover:before {
-        height: 100%;
-      }
-      .btn-7 span:hover:after {
-        width: 100%;
-      }
-      
-  </style>
-  <div class="btn-7"><span>click</span></div>
+<div class="container">
+<form action="">
+  <form action="https://www.w3schools.com/action_page.php">
+    <label for="myfile">Select a file:</label>
+    <input type="file" id="myfile" name="myfile"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+
+  <form action="handlers/uploadProfile.php" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="profile">Upload Profile</label>
+      <input type="file" class="form-control form-control-lg" accept="image/png,image/jpeg" required id="profile" name="profile" placeholder="asfas">
+    </div>
+    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Save</button>
+  </form>
 </body>
-</html>
+
+<!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Sep 2022 14:31:11 GMT -->
+</html> 

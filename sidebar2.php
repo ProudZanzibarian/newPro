@@ -1,3 +1,13 @@
+<?php 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+if (!isset($_SESSION["user"])) {
+  header("Location: ");
+}
+
+require_once("handlers/connection.php");
+?>
 <style>
     .sidebar2 {
         height: 100%;
@@ -52,9 +62,13 @@
     #settings{
         margin-top: 300px;
     }
-#contact{
+    #contact{
     margin-top: 360px;
 }
+    #register{
+        margin-top: 450px;
+    }
+
 
 
 </style>
@@ -67,7 +81,9 @@
         <a href="table.php" id="table">Tables<i class="fa fa-table" style="padding-left:41px;"></i></a>
         <a href="#client" id="client">Client<i class="icon icon-people" style="padding-left:47px;"></i></a>
         <a href="#client" id="companies">Companies<i class="icon icon-people" style="padding-left:24px;"></i></a>
-        <a href="#setting" id="settings">Setting<i class="icon icon-settings" style="padding-left:37px;"></i></a>
+        <a href="settings.php" id="settings">Settings<i class="icon icon-settings" style="padding-left:28px;"></i></a>
         <a href="#contact" id="contact">Contact<i class="icon icon-phone" style="padding-left:30px;"></i></a>
+        <a href="register.php" id="register">Register<i class="icon icon-phone" style="padding-left:25px;"></i></a>
+
 
     </div>

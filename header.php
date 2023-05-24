@@ -1,10 +1,3 @@
-<?php 
-if (!isset($_SESSION["user"])) {
-  header("Location: registration.php");
-}
-
-?>
-
 <html lang="en">
 
 <head>

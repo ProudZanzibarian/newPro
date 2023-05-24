@@ -9,10 +9,16 @@
   background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
-
+}
+.items{
+  margin-top: 90px;
+}
+.items a{
+  margin-top: 20px;
 }
 #toggle{
     font-size:30px;cursor:pointer;
+    color:blue;
 }
 
 .sidenav a {
@@ -43,11 +49,16 @@
 </style>
 
 <div id="mySidenav" class="sidenav">
+  <div class="items">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <a href="dashboard.php">Home</a>
+  <a href="table.php">Tours</a>
+  <a href="#">Companies</a>
+  <a href="settings.php">Settings</a>
+  <a href="Contact_Us.php">contact Us</a>
+
+  </div>
+
 </div>
 
 <span id="toggle" onclick="openNav()">&#9776;</span>

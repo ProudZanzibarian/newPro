@@ -1,7 +1,7 @@
 <?php session_start(); ?>
-<?php include("header.php"); ?>
-<?php include("sidebar2.php"); ?>
-<?php include("backColor.php"); ?>
+<?php include_once("header.php"); ?>
+<?php include_once("sidebar2.php"); ?>
+<?php include_once("backColor.php"); ?>
 <style>
     .flip-card {
         background-color: transparent;
@@ -56,35 +56,48 @@
         width: 100%;
         font-size: 18px;
     }
-</style>
-<div class="container">
 
+    .Heading {
+        margin-top: -50px;
+        z-index: 1;
+        color: #fff;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+</style>
+<div class="Heading text-center">
+    <h2>Tours Table</h2>
+</div>
+<div class="container">
     <?php
     try {
-        $query = $conn->prepare("SELECT * FROM tours t, toursImg m WHERE t.tourImgID = m.tourImgID");
-        $query->execute();
-        $n = 0;
+        $query = $conn->prepare("SELECT * FROM tours t, toursImg m WHERE t.toursImgID = m.toursImgID");
+        $res = $query->fetch();
         while ($res = $query->fetch()) {
     ?>
-            <div class="row">
+        <div class="row text-center">
+            <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="img/ha.png" alt="Avatar" style="width:300px;height:300px;">
+                    <a href="tour.php?id=<?php echo $res['toursID'];?>">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="img/<?php echo $res["tourImgName"]; ?>" alt="Avatar" style="width:100%;height:300px;">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <h4><?php echo $res["tourName"]; ?></h4>
+                                <p><?php echo $res["shortDesc"]; ?></p>
+                            </div>
                         </div>
-                        <div class="flip-card-back">
-                            <h1>John Doe</h1>
-                            <p>Architect & Engineer</p>
-                            <p>We love that guy</p>
-                        </div>
-                    </div>
-                    <p><button>Add to Cart</button></p>
+                    </a>
+                    <a href="#"><button>Add to Cart</button></a>
                 </div>
             </div>
+        </div>
     <?php
         }
     } catch (PDOException $e) {
         //throw $th;
     }
     ?>
+
 </div>
