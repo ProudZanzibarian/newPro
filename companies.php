@@ -1,7 +1,7 @@
 <?php session_start()?>
 <?php include_once("header.php"); ?>
 <?php include_once("sidebar2.php"); ?>
-<?php include_("backColor.php");?>
+<?php include("backColor.php");?>
 
 
 <div class="container" id="panels">

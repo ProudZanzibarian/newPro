@@ -34,6 +34,31 @@
         background-color: #ccc;
     }
 
+    /* Upload Card */
+    #imgUploadCard {
+        background-color: #fff;
+        height: 300px;
+        overflow: auto;
+    }
+#imgUpload{
+    float: left;
+}
+    /* The Close Button (x) */
+    .close {
+        position: absolute;
+        color: #000;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+        float: right;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
 
     /* Style the tab content */
     .tabcontent {
@@ -43,42 +68,34 @@
         border-top: none;
     }
 
+    .uploads {
+        margin-top: 25px;
+        width: 200px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 6%;
+    }
 </style>
 <div class="container">
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Company')">Register a Company</button>
         <button class="tablinks" onclick="openTab(event, 'Guider')">Register a Guider</button>
+        <button class="tablinks" onclick="openTab(event, 'tour')">Register a Tour</button>
+
     </div>
 
     <div id="Company" class="tabcontent">
         <div class="card" style="padding: 20px;">
-            <form>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <input class="form-control" type="text" value="Mark">
+            <form method="POST" enctype="multipart/form-data" action="handlers/cRegister.php">
 
-                        <input class="form-control" type="text" value="Jhonsan">
+                <input class="form-control" name="cName" type="text" placeholder="Company Name">
 
-                        <input class="form-control" type="email" value="mark@example.com">
+                <label class="btn btn-secondary form-control form-control-lg" for="profile" id="customButton">Upload profile</label>
+                <input type="file" style="display: none;" accept="image/png,image/jpeg" required id="profile" name="logo">
 
-                        <input class="form-control" type="text" value="Street">
+                <textarea name="cDesc" rows="10" cols="30" placeholder="Write Description.."></textarea>
 
-
-                    </div>
-
-                    <div class="col-lg-6">
-                        <input class="form-control" type="text" value="" placeholder="City">
-
-                        <input class="form-control" type="text" value="" placeholder="State">
-
-                        <input class="form-control" type="password" value="11111122333">
-
-                        <input class="form-control" type="password" value="11111122333">
-
-                    </div>
-                </div>
                 <input type="reset" class="btn btn-secondary" id="btn-1" value="Cancel">
-                <input type="button" class="btn btn-primary" id="btn-2" value="Save Changes">
+                <input type="Submit" name="submit" class="btn btn-primary" id="btn-2" value="Save Changes">
 
             </form>
         </div>
@@ -86,38 +103,121 @@
 
     <div id="Guider" class="tabcontent">
         <div class="card" style="padding: 20px;">
-            <form>
+
+            <form method="POST" action="handlers/gRegister.php" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-6">
-                        <input class="form-control" type="text" value="Mark">
-
-                        <input class="form-control" type="text" value="Jhonsan">
-
-                        <input class="form-control" type="email" value="mark@example.com">
-
-                        <input class="form-control" type="text" value="Street">
-
-
+                        <input class="form-control" type="text" placeholder="Full Name" name="name" required>
+                        <input class="form-control" type="date" name="gDOB" required>
+                        <input class="form-control" type="email" placeholder="Email" name="gEmail" required>
+                        <input class="form-control" type="tel" placeholder="Phone Number" name="gNum" required>
                     </div>
 
                     <div class="col-lg-6">
-                        <input class="form-control" type="text" value="" placeholder="City">
+                        <input class="form-control" type="text" placeholder="City" name="city" required>
+                        <input class="form-control" type="text" placeholder="State" name="state" required>
 
-                        <input class="form-control" type="text" value="" placeholder="State">
+                        <select class="form-control" name="cID" id="company" required>
+                            <option value="">--Select Company--</option>
+                            <?php
+                            try {
+                                $query = $conn->prepare("SELECT * FROM companies");
+                                $query->execute();
+                                while ($res = $query->fetch()) {
+                            ?>
+                                    <option value="<?php echo $res['companyID']; ?>"><?php echo $res['companyName']; ?></option>
+                            <?php
+                                }
+                            } catch (\Throwable $th) {
+                                // Handle the exception
+                            }
+                            ?>
+                        </select>
 
-                        <input class="form-control" type="password" value="11111122333">
+                        <label class="btn btn-secondary form-control form-control-lg" for="gProfile" id="customButton">Upload profile</label>
+                        <input type="file" style="display: none;" accept="image/png,image/jpeg" required id="gProfile" name="gProf">
+                    </div>
 
-                        <input class="form-control" type="password" value="11111122333">
-
+                    <div class="col">
+                        <textarea name="gExp" id="gExp" cols="30" rows="10" placeholder="Enter Experience.." required></textarea>
                     </div>
                 </div>
-                <input type="reset" class="btn btn-secondary" id="btn-1" value="Cancel">
-                <input type="button" class="btn btn-primary" id="btn-2" value="Save Changes">
 
+                <input type="reset" class="btn btn-secondary" id="btn-1" value="Cancel">
+                <input type="submit" name="submit" class="btn btn-primary" id="btn-2" value="Save Changes">
             </form>
+
+
         </div>
     </div>
+
+
+    <!-- Tour Tab -->
+    <div id="tour" class="tabcontent">
+        <div class="card" style="padding: 20px;">
+
+            <form method="POST" enctype="multipart/form-data" action="handlers/tRegister.php">
+                <div class="row">
+                    <div class="col-6">
+                        <input class="form-control" name="tName" type="text" placeholder="Tour Name">
+
+                        <textarea name="sDesc" rows="2" cols="20" placeholder="Write Short Description.."></textarea>
+
+                        <textarea name="lDesc" rows="10" cols="30" placeholder="Write Description.."></textarea>
+
+                        <div>
+        <input type="reset" class="btn btn-secondary" id="btn-1" value="Cancel">
+        <input type="Submit" name="submit" class="btn btn-primary" id="btn-2" value="Save Changes">
+    </div>
+
+            </form>
+
+        </div>
+
+        <div class="col-6">
+            <form action="handlers/tempImage.php" method="POST" enctype="multipart/form-data">
+                <input type="file" accept="image/png,image/jpeg" required name="imgUploaded" id="imgUploaded">
+                <button class="btn btn-secondary form-control form-control-lg" type="submit" name="submit" onclick="openTab(event, 'tour')" id="customButton">Upload Photo</button>
+            </form>
+            <div class="card" id="imgUploadCard">
+                <div class="row text-center">
+                    <?php
+                    try {
+                        $query2 = $conn->prepare("SELECT * FROM tempImg");
+                        $query2->execute();
+                        while ($tempImg = $query2->fetch()) {
+                    ?>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="container">
+                                    <img src="img/tempImg/<?php echo $tempImg["tempName"]; ?>" id="imgUpload" alt="" class="uploads">
+                                    <a href="handlers/deleteTourImg.php?tempID=<?php echo $tempImg["tempID"]; ?>" class="close" onclick="return confirm('Are you sure want to delete?');">&times;</a>
+
+                                </div>
+                            </div>
+                    <?php  }
+                    } catch (\Throwable $th) {
+                        // echo "nothing";
+                    }
+                    ?>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
 
 <script>
     function openTab(evt, tabName) {

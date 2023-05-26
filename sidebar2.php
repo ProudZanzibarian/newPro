@@ -57,7 +57,7 @@ require_once("handlers/connection.php");
     }
     #companies{
         margin-top: 240px;
-        left: -105px;
+        left: -101px;
     }
     #settings{
         margin-top: 300px;
@@ -80,10 +80,10 @@ require_once("handlers/connection.php");
         <a href="dashboard.php" id="home">Home<i class="zmdi zmdi-home" style="padding-left:47px;"></i></a>
         <a href="table.php" id="table">Tables<i class="fa fa-table" style="padding-left:41px;"></i></a>
         <a href="#client" id="client">Client<i class="icon icon-people" style="padding-left:47px;"></i></a>
-        <a href="#client" id="companies">Companies<i class="icon icon-people" style="padding-left:24px;"></i></a>
-        <a href="settings.php" id="settings">Settings<i class="icon icon-settings" style="padding-left:28px;"></i></a>
+        <a href="companies" id="companies">Companies<i class="fas fa-briefcase" style="padding-left:19px;"></i></a>
+        <a href="settings.php" id="settings">Settings<i class="icon icon-settings" style="padding-left:26px;"></i></a>
         <a href="#contact" id="contact">Contact<i class="icon icon-phone" style="padding-left:30px;"></i></a>
-        <a href="register.php" id="register">Register<i class="icon icon-phone" style="padding-left:25px;"></i></a>
+        <a href="register.php" id="register">Register<i class="fa fa-edit" style="padding-left:25px;"></i></a>
 
 
     </div>

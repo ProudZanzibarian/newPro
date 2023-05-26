@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <div class="container">
-<form action="">
-  <form action="https://www.w3schools.com/action_page.php">
-    <label for="myfile">Select a file:</label>
-    <input type="file" id="myfile" name="myfile"><br><br>
-    <input type="submit" value="Submit">
-  </form>
+  <form action="">
+    <form action="https://www.w3schools.com/action_page.php">
+      <label for="myfile">Select a file:</label>
+      <input type="file" id="myfile" name="myfile"><br><br>
+      <input type="submit" value="Submit">
+    </form>
 
+    <form method="POST" action="handlers/gRegister.php" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-lg-6">
+          <input class="form-control" type="text" placeholder="Full Name" name="name" required>
+          <input class="form-control" type="date" name="gDOB" required>
+          <input class="form-control" type="email" placeholder="Email" name="gEmail" required>
+          <input class="form-control" type="tel" placeholder="Phone Number" name="gNum" required>
+        </div>
 
-  <form action="handlers/uploadProfile.php" method="POST" enctype="multipart/form-data">
-    <div class="mb-3">
-      <label for="profile">Upload Profile</label>
-      <input type="file" class="form-control form-control-lg" accept="image/png,image/jpeg" required id="profile" name="profile" placeholder="asfas">
-    </div>
-    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Save</button>
-  </form>
-</body>
+        <div class="col-lg-6">
+          <input class="form-control" type="text" placeholder="City" name="city" required>
+          <input class="form-control" type="text" placeholder="State" name="state" required>
 
-<!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Sep 2022 14:31:11 GMT -->
-</html> 
+          <select class="form-control" name="company" id="company" required>
+            <option value="">--Select Company--</option>
+
+            <option value="2">nma</option>
+          </select>
+
+          <label class="btn btn-secondary form-control form-control-lg" for="profile" id="customButton">Upload
+            profile</label>
+          <input type="file" style="display:none;" accept="image/png,image/jpeg" required id="profile" name="gProf">
+        </div>
+
+        <div class="col">
+          <textarea name="gExp" id="gExp" cols="30" rows="10" placeholder="Enter Experience.." required></textarea>
+        </div>
+      </div>
+
+      <input type="reset" class="btn btn-secondary" id="btn-1" value="Cancel">
+      <input type="submit" name="submit" class="btn btn-primary" id="btn-2" value="Save Changes">
+    </form>
+    </body>
+
+    <!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Sep 2022 14:31:11 GMT -->
+
+</html>

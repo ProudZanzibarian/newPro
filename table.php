@@ -67,36 +67,44 @@
 <div class="Heading text-center">
     <h2>Tours Table</h2>
 </div>
-<div class="container">
+<!-- <div class="container"> -->
+
+
     <?php
     try {
         $query = $conn->prepare("SELECT * FROM tours t, toursImg m WHERE t.toursImgID = m.toursImgID");
+        $query->execute();
         $res = $query->fetch();
         while ($res = $query->fetch()) {
     ?>
-        <div class="row text-center">
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="flip-card">
-                    <a href="tour.php?id=<?php echo $res['toursID'];?>">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="img/<?php echo $res["tourImgName"]; ?>" alt="Avatar" style="width:100%;height:300px;">
-                            </div>
+            <div class="row text-center">
 
-                            <div class="flip-card-back">
-                                <h4><?php echo $res["tourName"]; ?></h4>
-                                <p><?php echo $res["shortDesc"]; ?></p>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                    <div class="flip-card">
+                        <a href="tour.php?id=<?php echo $res['toursID']; ?>">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="img/<?php echo $res["tourImgName"]; ?>" alt="Tour Image" style="width:100%; height:300px;">
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4><?php echo $res["tourName"]; ?></h4>
+                                    <p><?php echo $res["shortDesc"]; ?></p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="#"><button>Add to Cart</button></a>
+                        </a>
+                        <a href="#"><button>Add to Cart</button></a>
+                    </div>
+
+                    
+
                 </div>
+
             </div>
-        </div>
     <?php
         }
     } catch (PDOException $e) {
-        //throw $th;
+        echo "Error";
     }
     ?>
 
