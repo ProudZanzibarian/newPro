@@ -24,32 +24,35 @@ if (isset($_POST["submit"])) {
         foreach ($tempImages as $tempImg) {
             $img = $tempImg["tempName"];
 
-            // Move temporary image to tour image table
-            $stmt3 = $conn->prepare("INSERT INTO toursImg (tourImgName, tourID) VALUES (:tourImgName, :tourID)");
-            $stmt3->execute(array(":tourImgName" => $img, ":tourID" => $tourID));
+            // Move temporary image to tour image directory
+            $newPath = "../img/tours/" . $tName . "/";
+            $imgPath = $newPath . $img;
 
-            
-
-            // Delete temporary images
-            $stmt4 = $conn->prepare("DELETE FROM tempImg WHERE tempName = :tempName");
-            $stmt4->execute(array(":tempName" => $img));
-
-            $path = "../img/tempImg/" . $img;
-
-            // Deleting from directory
-            if (file_exists($path)) {
-                if (unlink($path)) {
-                    // echo "File deleted successfully.";
+            if (!file_exists($newPath)) {
+                if (mkdir($newPath, 0777, true)) {
+                    if (rename("../img/tempImg/" . $img, $imgPath)) {
+                        // Insert image path into toursImg table
+                        $stmt3 = $conn->prepare("INSERT INTO toursImg (tourImgName, tourID) VALUES (:tourImgName, :tourID)");
+                        $stmt3->execute(array(":tourImgName" => $imgPath, ":tourID" => $tourID));
+                        echo "File moved successfully.";
+                    } else {
+                        echo "Error moving the file.";
+                    }
                 } else {
-                    // echo "Error deleting the file.";
+                    echo "Directory creation failed.";
                 }
             } else {
-                // echo "File does not exist.";
+                echo "Directory already exists.";
             }
+
+            // Delete temporary image record
+            $stmt4 = $conn->prepare("DELETE FROM tempImg WHERE tempName = :tempName");
+            $stmt4->execute(array(":tempName" => $img));
         }
     } catch (\Throwable $th) {
-        // echo "Error" . $th->getMessage();
+        echo "Error: " . $th->getMessage();
     }
 }
+
 header("Location: ../register.php");
 ?>

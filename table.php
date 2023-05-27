@@ -39,9 +39,26 @@
     }
 
     .flip-card-back {
-        background-color: #2980b9;
+        background-color: #333;
         color: white;
         transform: rotateY(180deg);
+    }
+
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 75%;
+        overflow: hidden;
+    }
+
+    .card-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     button {
@@ -63,49 +80,45 @@
         color: #fff;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
+
 </style>
 <div class="Heading text-center">
     <h2>Tours Table</h2>
 </div>
-<!-- <div class="container"> -->
+<div class="container text-center"  id="tourContainer">
 
 
-    <?php
-    try {
-        $query = $conn->prepare("SELECT * FROM tours t, toursImg m WHERE t.toursImgID = m.toursImgID");
-        $query->execute();
-        $res = $query->fetch();
-        while ($res = $query->fetch()) {
-    ?>
-            <div class="row text-center">
 
-                <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="row text-center">
+        <?php
+        try {
+            $query = $conn->prepare("SELECT * FROM tours t, toursImg m WHERE t.tourID = m.tourID");
+            $query->execute();
+            $res = $query->fetch();
+            while ($res = $query->fetch()) {
 
-                    <div class="flip-card">
-                        <a href="tour.php?id=<?php echo $res['toursID']; ?>">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="img/<?php echo $res["tourImgName"]; ?>" alt="Tour Image" style="width:100%; height:300px;">
-                                </div>
-                                <div class="flip-card-back">
-                                    <h4><?php echo $res["tourName"]; ?></h4>
-                                    <p><?php echo $res["shortDesc"]; ?></p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#"><button>Add to Cart</button></a>
-                    </div>
+                $tourName = $res["tourName"];
+                $tourImgName = $res["tourImgName"];
+                $shortDesc = $res["shortDesc"];
 
-                    
-
-                </div>
-
-            </div>
-    <?php
+        ?>
+<div class="card-tour">
+    <img src="img/tour-image.jpg" alt="Tour Image" width="300" height="400">
+    <div class="card-tour-inner">
+      <h2 class="card-tour-title">Tour Name</h2>
+      <p class="card-tour-description">Tour description goes here</p>
+      <div class="add-to-cart">
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+        <?php
+            }
+        } catch (PDOException $th) {
+            echo "Error" . $th->getMessage();
         }
-    } catch (PDOException $e) {
-        echo "Error";
-    }
-    ?>
+        ?>
+    </div>
 
 </div>
+<!-- <?php require_once("footer.php"); ?> -->

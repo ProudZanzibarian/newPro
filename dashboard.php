@@ -56,16 +56,22 @@
             $query->execute(array(":name" => $user));
             $res = $query->fetch();
         } catch (PDOException $e) {
-            echo "Error";
+            echo "Error" . $e->getMessage();
         } ?>
         <div class="col-lg-4 col-sm-12">
             <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Smart Tour</h5>
                     <p class="card-text">
-                        <span>
-                            <img src="img/<?php echo $res["profile"];?>" alt="Avatar Logo" class="rounded-pill" id="userPic">
-                        </span>
+                    <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="avatar-container mb-2" id="avator_settings_container">
+                    <img src="img/users/<?php echo $res["userName"] . "/" . $res["profile"]; ?>" alt="Avatar Logo" class="avatar-image">
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
                     </p>
                     <table>
 
@@ -93,3 +99,5 @@
     </div>
 
 </div>
+
+<?php require_once("footer.php"); ?>
