@@ -25,7 +25,8 @@ if (isset($_POST["submit"])) {
             $img = $tempImg["tempName"];
 
             // Move temporary image to tour image directory
-            $newPath = "../img/tours/" . $tName . "/";
+            $CtName = str_replace(" ","_",$tName);
+            $newPath = "../img/tours/" . $CtName . "/";
             $imgPath = $newPath . $img;
 
             if (!file_exists($newPath)) {
@@ -33,7 +34,7 @@ if (isset($_POST["submit"])) {
                     if (rename("../img/tempImg/" . $img, $imgPath)) {
                         // Insert image path into toursImg table
                         $stmt3 = $conn->prepare("INSERT INTO toursImg (tourImgName, tourID) VALUES (:tourImgName, :tourID)");
-                        $stmt3->execute(array(":tourImgName" => $imgPath, ":tourID" => $tourID));
+                        $stmt3->execute(array(":tourImgName" => $img, ":tourID" => $tourID));
                         echo "File moved successfully.";
                     } else {
                         echo "Error moving the file.";

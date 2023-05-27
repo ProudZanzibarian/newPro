@@ -80,12 +80,11 @@
         color: #fff;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
-
 </style>
 <div class="Heading text-center">
     <h2>Tours Table</h2>
 </div>
-<div class="container text-center"  id="tourContainer">
+<div class="container text-center" id="tourContainer">
 
 
 
@@ -96,28 +95,27 @@
             $query->execute();
             $res = $query->fetch();
             while ($res = $query->fetch()) {
-
-                $tourName = $res["tourName"];
+                
+                $tourName = str_replace(" ", "_", $res["tourName"]);
                 $tourImgName = $res["tourImgName"];
                 $shortDesc = $res["shortDesc"];
-
         ?>
-<div class="card-tour">
-    <img src="img/tour-image.jpg" alt="Tour Image" width="300" height="400">
-    <div class="card-tour-inner">
-      <h2 class="card-tour-title">Tour Name</h2>
-      <p class="card-tour-description">Tour description goes here</p>
-      <div class="add-to-cart">
-        <button>Add to Cart</button>
-      </div>
-    </div>
-  </div>
+                <div class="card-tour" style="background: url('img/tours/<?php echo $tourName; ?>/<?php echo $tourImgName; ?>;">
+                    <div class="card-tour-inner">
+                        <h2 class="card-tour-title"><?php echo $tourName; ?></h2>
+                        <p class="card-tour-description"><?php echo $shortDesc; ?></p>
+                        <div class="add-to-cart">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
         <?php
             }
         } catch (PDOException $th) {
             echo "Error" . $th->getMessage();
         }
         ?>
+
     </div>
 
 </div>

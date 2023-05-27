@@ -64,7 +64,7 @@ try {
 
                         <input class="form-control" type="text" name="state" value="<?php echo $res["state"]; ?>" placeholder="State">
 
-                        <input class="form-control" name="psw" type="password" name="psw" value="<?php echo $res["password"]; ?>" placeholder="Password">
+                        <input class="form-control" name="psw" type="password" value="<?php echo $res["password"]; ?>" placeholder="Password">
                         <?php
                         if (isset($_GET['status']) && $_GET['status'] == 1) {
                             echo $ErrorMessage = "<span color='red'><b>Password does not match</b></span>";

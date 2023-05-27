@@ -13,7 +13,7 @@ if (isset($_POST["submit"])) {
 
             $arr = explode(".", $image["name"]);
             $user = $_SESSION["user"];
-$date = date("h:i:s ");
+$date = date("h:i:s");
 
             $imgName = "img_" . $user.$date . "." . end($arr);
             $path = "../img/tempImg/" . $imgName;
