@@ -40,9 +40,11 @@
         height: 300px;
         overflow: auto;
     }
-#imgUpload{
-    float: left;
-}
+
+    #imgUpload {
+        float: left;
+    }
+
     /* The Close Button (x) */
     .close {
         position: absolute;
@@ -83,6 +85,7 @@
 
     </div>
 
+<!-- company-tab -->
     <div id="Company" class="tabcontent">
         <div class="card" style="padding: 20px;">
             <form method="POST" enctype="multipart/form-data" action="handlers/cRegister.php">
@@ -155,10 +158,40 @@
     <!-- Tour Tab -->
     <div id="tour" class="tabcontent">
         <div class="card" style="padding: 20px;">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <form action="handlers/tempImage.php" method="POST" enctype="multipart/form-data">
+                        <input type="file" accept="image/png,image/jpeg" required name="imgUploaded" id="imgUploaded">
+                        <button class="btn btn-secondary form-control form-control-lg" type="submit" name="submit" onclick="openTab(event, 'tour')" id="customButton">Upload Photo</button>
+                    </form>
+                    <div class="card" id="imgUploadCard">
+                        <div class="row text-center">
+                            <?php
+                            try {
+                                $query2 = $conn->prepare("SELECT * FROM tempImg");
+                                $query2->execute();
+                                while ($tempImg = $query2->fetch()) {
+                            ?>
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <div class="container">
+                                            <img src="img/tempImg/<?php echo $tempImg["tempName"]; ?>" id="imgUpload" alt="" class="uploads">
+                                            <a href="handlers/deleteTourImg.php?tempID=<?php echo $tempImg["tempID"]; ?>" class="close" onclick="return confirm('Are you sure want to delete?');">&times;</a>
 
-            <form method="POST" enctype="multipart/form-data" action="handlers/tRegister.php">
-                <div class="row">
-                    <div class="col-6">
+                                        </div>
+                                    </div>
+                            <?php  }
+                            } catch (\Throwable $th) {
+                                // echo "nothing";
+                            }
+                            ?>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <form method="POST" enctype="multipart/form-data" action="handlers/tRegister.php">
+
                         <input class="form-control" name="tName" type="text" placeholder="Tour Name">
 
                         <textarea name="sDesc" rows="2" cols="20" placeholder="Write Short Description.."></textarea>
@@ -166,53 +199,23 @@
                         <textarea name="lDesc" rows="10" cols="30" placeholder="Write Description.."></textarea>
 
                         <div>
-        <input type="reset" class="btn btn-secondary" id="btn-1" value="Cancel">
-        <input type="Submit" name="submit" class="btn btn-primary" id="btn-2" value="Save Changes">
-    </div>
-
-            </form>
-
-        </div>
-
-        <div class="col-6">
-            <form action="handlers/tempImage.php" method="POST" enctype="multipart/form-data">
-                <input type="file" accept="image/png,image/jpeg" required name="imgUploaded" id="imgUploaded">
-                <button class="btn btn-secondary form-control form-control-lg" type="submit" name="submit" onclick="openTab(event, 'tour')" id="customButton">Upload Photo</button>
-            </form>
-            <div class="card" id="imgUploadCard">
-                <div class="row text-center">
-                    <?php
-                    try {
-                        $query2 = $conn->prepare("SELECT * FROM tempImg");
-                        $query2->execute();
-                        while ($tempImg = $query2->fetch()) {
-                    ?>
-                            <div class="col-lg-6 col-md-12 col-sm-12">
-                                <div class="container">
-                                    <img src="img/tempImg/<?php echo $tempImg["tempName"]; ?>" id="imgUpload" alt="" class="uploads">
-                                    <a href="handlers/deleteTourImg.php?tempID=<?php echo $tempImg["tempID"]; ?>" class="close" onclick="return confirm('Are you sure want to delete?');">&times;</a>
-
-                                </div>
-                            </div>
-                    <?php  }
-                    } catch (\Throwable $th) {
-                        // echo "nothing";
-                    }
-                    ?>
-
+                            <input type="reset" class="btn btn-secondary" id="btn-1" value="Cancel">
+                            <input type="Submit" name="submit" class="btn btn-primary" id="btn-2" value="Save Changes">
+                        </div>
+                    </form>
 
                 </div>
+
+
             </div>
+
+
         </div>
+
+
+
+
     </div>
-
-
-</div>
-
-
-
-
-</div>
 </div>
 </div>
 

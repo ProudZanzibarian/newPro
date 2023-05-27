@@ -1,4 +1,4 @@
-<?php include_once("header.php");?>
+<?php include_once("header.php"); ?>
 
 <style>
     #registration {
@@ -137,7 +137,28 @@
                             </div>
                         </div>
                         <input type="text" placeholder="User Name" name="userName" id="userName" required>
+                        <?php
+                        if (isset($_GET['status']) && $_GET['status'] == 0) {
+                            echo $ErrorMessage = "<span color='red'><b>user Exist</b></span>";
+                        }
+                        ?>
+                        <div class="row">
+                            <div class="col-7">
+                            <input type="text" placeholder="City" name="city" id="city" required>
+
+                            </div>
+
+                            <div class="col-5">
+                            <input type="text" placeholder="State" name="state" id="state" required>
+
+                            </div>
+                        </div>
                         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                        <?php
+                        if (isset($_GET['status']) && $_GET['status'] == 1) {
+                            echo $ErrorMessage = "<span color='red'><b>Password does not match</b></span>";
+                        }
+                        ?>
                         <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
                     </div>
                     <hr>

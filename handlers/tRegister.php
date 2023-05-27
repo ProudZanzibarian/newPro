@@ -28,12 +28,27 @@ if (isset($_POST["submit"])) {
             $stmt3 = $conn->prepare("INSERT INTO toursImg (tourImgName, tourID) VALUES (:tourImgName, :tourID)");
             $stmt3->execute(array(":tourImgName" => $img, ":tourID" => $tourID));
 
+            
+
             // Delete temporary images
             $stmt4 = $conn->prepare("DELETE FROM tempImg WHERE tempName = :tempName");
             $stmt4->execute(array(":tempName" => $img));
+
+            $path = "../img/tempImg/" . $img;
+
+            // Deleting from directory
+            if (file_exists($path)) {
+                if (unlink($path)) {
+                    // echo "File deleted successfully.";
+                } else {
+                    // echo "Error deleting the file.";
+                }
+            } else {
+                // echo "File does not exist.";
+            }
         }
     } catch (\Throwable $th) {
-        echo "Error" . $th->getMessage();
+        // echo "Error" . $th->getMessage();
     }
 }
 header("Location: ../register.php");
