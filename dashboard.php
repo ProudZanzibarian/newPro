@@ -44,7 +44,7 @@
         <div class="col-lg-8 col-sm-12 ">
             <div class="card" id="show">
                 <div class="card-body">
-                    <p class="card-img"><?php include("slideShow.php"); ?></p>
+                    <p class="card-img"><?php include_once("slideShow.php"); ?></p>
                 </div>
             </div>
         </div>
@@ -85,14 +85,14 @@
 
                         </tr>
                         <tr>
-                            <th>Suscription:</th>
-                            <td>Subscribed</td>
+                            <th>User Name:</th>
+                            <td><?php echo $res["userName"]; ?></td>
+
                         </tr>
 
                     </table>
                     <hr>
-                    <a href="#" class="btn btn-primary" id="btn-1">Subscribe</a>
-                    <a href="#" class="btn btn-primary" id="btn-2">Edit</a>
+                    <a href="settings.php" class="btn btn-primary" id="btn-1">View</a>
                 </div>
             </div>
         </div>

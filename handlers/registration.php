@@ -31,13 +31,10 @@ if (isset($_POST["submit"])) {
             }
         } else {
             header("Location: ../registration.php?status=0");
-            exit;
         }
     } else {
         header("Location: ../registration.php?status=1");
-        exit;
     }
 }
 header("Location: ../registration.php");
-exit;
 ?>

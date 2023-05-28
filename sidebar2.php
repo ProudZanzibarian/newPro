@@ -1,9 +1,10 @@
-<?php 
+<?php
+session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 if (!isset($_SESSION["user"])) {
-  header("Location: ");
+    header("Location: registration.php");
 }
 
 require_once("handlers/connection.php");
@@ -21,7 +22,8 @@ require_once("handlers/connection.php");
         padding-top: 100px;
         transition: 0.3s;
     }
-    .sidebar2:hover{
+
+    .sidebar2:hover {
         width: 120px;
 
     }
@@ -43,34 +45,44 @@ require_once("handlers/connection.php");
         color: red;
         left: 0;
     }
-    #companies:hover{
+
+    #companies:hover {
         left: 0;
     }
-    #home{
+
+    #home {
         margin-top: 60px;
     }
-    #table{
+
+    #table {
         margin-top: 120px;
     }
-    #client{
+
+    #companies {
         margin-top: 180px;
-    }
-    #companies{
-        margin-top: 240px;
         left: -101px;
     }
-    #settings{
+
+    #settings {
+        margin-top: 240px;
+
+    }
+
+    #contact {
         margin-top: 300px;
     }
-    #contact{
-    margin-top: 360px;
-}
-    #register{
-        margin-top: 450px;
+
+    #client {
+        margin-top: 420px;
     }
 
+    #register {
+        margin-top: 460px;
+    }
 
-
+    #logout {
+        margin-top: 520px;
+    }
 </style>
 </head>
 
@@ -79,11 +91,19 @@ require_once("handlers/connection.php");
     <div class="sidebar2">
         <a href="dashboard.php" id="home">Home<i class="zmdi zmdi-home" style="padding-left:47px;"></i></a>
         <a href="table.php" id="table">Tables<i class="fa fa-table" style="padding-left:41px;"></i></a>
-        <a href="#client" id="client">Client<i class="icon icon-people" style="padding-left:47px;"></i></a>
         <a href="companies.php" id="companies">Companies<i class="fas fa-briefcase" style="padding-left:19px;"></i></a>
         <a href="settings.php" id="settings">Settings<i class="icon icon-settings" style="padding-left:26px;"></i></a>
         <a href="#contact" id="contact">Contact<i class="icon icon-phone" style="padding-left:30px;"></i></a>
-        <a href="register.php" id="register">Register<i class="fa fa-edit" style="padding-left:25px;"></i></a>
+        <?php 
+        if (isset($_SESSION["user"]) && $_SESSION["user"] == "admin") {
+             
+        ?>
+            <a href="#client" id="client">Client<i class="icon icon-people" style="padding-left:47px;"></i></a>
+            <a href="register.php" id="register">Register<i class="fa fa-edit" style="padding-left:25px;"></i></a>
+        <?php
+         }
+        ?>
+        <a href="handlers/logout.php" id="logout">Logout<i class="icon icon-logout" style="padding-left:33px;"></i></a>
 
 
     </div>

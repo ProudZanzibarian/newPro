@@ -1,4 +1,9 @@
 <?php session_start(); ?>
+<?php 
+if (!isset($_SESSION["user"]) && $_SESSION["user"] != "admin") {
+             header("location: dashboard.php");
+            }
+        ?>
 <?php include_once("header.php"); ?>
 <?php include_once("sidebar2.php"); ?>
 <?php include_once("backColor.php"); ?>

@@ -434,7 +434,7 @@ input[type=text], input[type=password] {
     align-items: flex-end;
     width: 300px;
     height: 400px;
-    margin-left:60px;
+    margin-left:30px;
     margin-top: 20px;
     background-color:#333;
     border-radius: 8px;

@@ -13,7 +13,7 @@
                 <input type="text" id="search" name="search" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome">
             </form>
             <span class="avatar-container" class="dropdown" id="avator_backColor_container">
-                   <a href="#" class="dropdown-toggle"> <img style="object-fit: cover;" src="img/users/<?php echo $res["userName"] . "/" . $res["profile"]; ?>" alt="Avatar Logo" class="avatar-image" id="userAvator"></a>
+                   <a href="settings.php" > <img style="object-fit: cover;" src="img/users/<?php echo $res["userName"] . "/" . $res["profile"]; ?>" alt="Avatar Logo" class="avatar-image" id="userAvator"></a>
 
         </span>
     </div>

@@ -1,7 +1,6 @@
 <?php session_start(); ?>
 <?php require_once("header.php"); ?>
 <?php include("sidebar2.php"); ?>
-
 </style>
 <div class="container">
 
