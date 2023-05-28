@@ -408,9 +408,11 @@ input[type=text], input[type=password] {
 #avator_backColor_container {
     width: 40px;
     height: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #avator_settings_container {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 300px;
     height: 300px;
 }
@@ -432,10 +434,12 @@ input[type=text], input[type=password] {
     align-items: flex-end;
     width: 300px;
     height: 400px;
+    margin-left:60px;
+    margin-top: 20px;
     background-color:#333;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: transform 0.3s ease;
   }
 
@@ -462,6 +466,22 @@ input[type=text], input[type=password] {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    opacity: 1;
+  }
+
+  .hover-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .card-tour:hover .hover-text {
     opacity: 1;
   }
 

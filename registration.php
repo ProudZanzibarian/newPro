@@ -144,12 +144,12 @@
                         ?>
                         <div class="row">
                             <div class="col-7">
-                            <input type="text" placeholder="City" name="city" id="city" required>
+                                <input type="text" placeholder="City" name="city" id="city" required>
 
                             </div>
 
                             <div class="col-5">
-                            <input type="text" placeholder="State" name="state" id="state" required>
+                                <input type="text" placeholder="State" name="state" id="state" required>
 
                             </div>
                         </div>
@@ -174,7 +174,18 @@
             <form class="mt-5" action="handlers/login.php" method="post">
                 <div class="container">
                     <input type="text" placeholder="Enter Username" name="uname" required>
+                    <?php
+                    if (isset($_GET['error']) && $_GET['error'] == 0) {
+                        echo $ErrorMessage = "<span style=\"color:red;\"><b>User Name does not exit!</b></span>";
+                    }
+                    ?>
                     <input type="password" placeholder="Enter Password" name="psw" required>
+                    <?php
+                    if (isset($_GET['error']) && $_GET['error'] == 1) {
+                        echo $ErrorMessage = "<span style=\"color:red;\"><b>Wrong Password!</b></span>";
+                    }
+                    ?>
+                    
                     <button type="submit" name="submit" class="registerbtn">Login</button>
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me

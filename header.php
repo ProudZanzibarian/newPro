@@ -28,6 +28,17 @@
 
 </head>
 <body>
+<div class="dropdown avatar-container">
+  <a class="dropdown-toggle" id="avator_backColor_container" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <img style="object-fit: cover;" src="img/users/<?php echo $res['userName'] . '/' . $res['profile']; ?>" alt="Avatar Logo" class="avatar-image" id="userAvator">
+  </a>
+  <div class="dropdown-menu" aria-labelledby="avator_backColor_container">
+    <!-- Dropdown menu items -->
+    <a class="dropdown-item" href="#">Item 1</a>
+    <a class="dropdown-item" href="#">Item 2</a>
+    <a class="dropdown-item" href="#">Item 3</a>
+  </div>
+</div>
 
 <div class="content">
 

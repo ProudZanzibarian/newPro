@@ -1,7 +1,9 @@
 <?php session_start(); ?>
 <?php include("header.php"); ?>
 <?php include("sidebar2.php"); ?>
-<?php include("backColor.php"); ?>
+<?php include("backColor.php");
+
+?>
 <style>
     h3 {
         color: red;
@@ -169,38 +171,36 @@
 
             <div id="Images" class="tabcontent">
                 <div class="card">
-                    <?php
-                    try {
-                        $query = $conn->prepare("SELECT * FROM tours t, toursImg m WHERE t.tourImgID = m.tourImgID");
-                        $res = $query->fetch();
-                        while ($res = $query->fetch()) {
+                    <?php include_once("slideTour.php");?>
+                <?php
+    try {
+        if (isset($_GET["tID"])) {
+            $tourID = $_GET["tID"];
+
+            $query = $conn->prepare("SELECT * FROM tours t, toursImg m WHERE m.tourID = :tourID");
+            $query->execute(array(":tourID" => $tourID));
+            $res = $query->fetch();
+
+                $tourName = str_replace(" ", "_", $res["tourName"]);
+                $tourImgName = $res["tourImgName"];
+                $tourMap = $res["tourMap"];
+                $tourDesc = $res["tourDescription"];
+
                     ?>
-                            <div class="slideshow-container">
-                                <div class="mySlides fade">
-                                    <div class="numbertext"><?php echo $res["tourImgID"]; ?></div>
-                                    <img src="img/<?php echo $res["tourImagName"]; ?>" style="width:100%">
-                                    <div class="text"><?php echo $res["tourImagName"]; ?></div>
-                                </div>
 
-                                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                                <a class="next" onclick="plusSlides(1)">❯</a>
+                <?php
+                } else {
+                    echo "No image found";
+                }
+            ?>
 
-                            </div>
-                        <?php
-                        } ?>
-
-                        <br>
-
-                        <div style="text-align:center">
-                            <span class="dot" onclick="currentSlide(1)"></span>
-                        </div>
 
                 </div>
             </div>
 
             <div id="Maps" class="tabcontent">
                 <h3>Maps</h3>
-                <p>Maps is the capital of France.</p>
+                <p><?php echo $tourMap;  ?></p>
             </div>
         </div>
         <div class="col-lg-4 col-sm-12 text-center" style="margin-top:100px;">
@@ -212,27 +212,33 @@
     </div>
     <div class="container">
         <h3>Description</h3>
-        <p><?php echo $res["tourDescription"]; ?></p>
-    <?php
+        <p><?php echo $tourDesc; ?></p>
+<?php
                     } catch (PDOException $e) {
-                        //throw $th;
+                        echo "err" . $e->getMessage();
+
                     }
-    ?>
+?>
+
+
+
 
     </div>
     <br>
     <div class="row ">
-        <div class="col-6">
+        <div class="col-8">
             <div class="card">
 
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <div class="container">
-                <table >
+                <table>
                     <tr>
-                    <td><img src="img/ha.png" alt="Avatar Logo" class="rounded-pill" width="60px"></td>    
-                    <td><h5> Usama Talib Juma</h5></td>
+                        <td><img src="img/ha.png" alt="Avatar Logo" class="rounded-pill" width="60px"></td>
+                        <td>
+                            <h5> Usama Talib Juma</h5>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -242,8 +248,6 @@
         </div>
     </div>
 </div>
-
-
 <script>
     // Tab Show
     function openCity(evt, tabShow) {
@@ -258,37 +262,5 @@
         }
         document.getElementById(tabShow).style.display = "block";
         evt.currentTarget.className += " active";
-    }
-
-    // slide Show
-    let slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {
-            slideIndex = 1
-        }
-        if (n < 1) {
-            slideIndex = slides.length
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
     }
 </script>

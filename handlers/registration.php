@@ -24,15 +24,20 @@ if (isset($_POST["submit"])) {
     if (password_verify($pass_repeat, $pass)) {
         if (!file_exists($userFolder)) {
             if (mkdir($userFolder, 0777, true)) {
-                $stmt = $conn->prepare("INSERT INTO `tourist`(`Fname`, `Lname`, `userName`, `city`, `state` `Email`, `password`, `profile`, `dob`, `lastLogin`) VALUES (:fname, :lname, :user, :city, :state :email, :pass, :userImg, :dob, CURRENT_TIMESTAMP)");
+                $stmt = $conn->prepare("INSERT INTO `tourist`(`Fname`, `Lname`, `userName`, `city`, `state`, `Email`, `password`, `profile`, `dob`, `lastLogin`) VALUES
+                 (:fname, :lname, :user, :city, :state, :email, :pass, :userImg, :dob, CURRENT_TIMESTAMP)");
                 $stmt->execute(array(":fname" => $fName, ":lname" => $lName, ":user" => $user, ":city" => $city, ":state" => $state, ":email" => $email, ":pass" => $pass, ":userImg" => $usrImg, ":dob" => $dob));
                 // echo "Message sent";
             }
         } else {
             header("Location: ../registration.php?status=0");
-        }        // echo "Not sent :{";
+            exit;
+        }
     } else {
         header("Location: ../registration.php?status=1");
+        exit;
     }
 }
 header("Location: ../registration.php");
+exit;
+?>

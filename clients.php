@@ -91,7 +91,7 @@
     <div class="row text-center">
         <?php
         try {
-            $query = $conn->prepare("SELECT * FROM tours t, toursImg m WHERE t.tourID = m.tourID");
+            $query = $conn->prepare("SELECT * FROM tourist");
             $query->execute();
             $res = $query->fetch();
             while ($res = $query->fetch()) {

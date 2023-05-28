@@ -19,14 +19,16 @@ if(isset($_POST["submit"])) {
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    if($stmt == true){
     if($result && password_verify($pass, $result["password"])) {
         session_start();
         $_SESSION["user"] = $result["userName"];
 
         header("Location: ../dashboard.php");
         exit();
+    }else {      header("Location: ../registration.php?error=0");}
     } else {
-        header("Location: ../registration.php?error=invalid");
+        header("Location: ../registration.php?error=1");
         exit();
     }
 } else {
